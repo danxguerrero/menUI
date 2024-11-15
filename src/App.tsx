@@ -1,4 +1,4 @@
-import { SignInButton, UserButton } from '@clerk/clerk-react'
+import { SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react'
 import { Authenticated, Unauthenticated } from 'convex/react' 
 function App() {
 
@@ -10,6 +10,7 @@ function App() {
       </Unauthenticated>
       <Authenticated>
         <UserButton />
+        <SignOutButton />
       </Authenticated>
     </main>
   )
