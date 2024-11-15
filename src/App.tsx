@@ -1,16 +1,15 @@
-import { SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react'
 import { Authenticated, Unauthenticated } from 'convex/react' 
-function App() {
+import { MenuBar } from './components/MenuBar.tsx'
 
+function App() {
   return (
     <main>
-      <h1>MenUI</h1>
+      <MenuBar />
       <Unauthenticated>
-        <SignInButton />
+        <p>Please sign in to continue</p>
       </Unauthenticated>
       <Authenticated>
-        <UserButton />
-        <SignOutButton />
+        <p>Welcome to MenUI</p>
       </Authenticated>
     </main>
   )
