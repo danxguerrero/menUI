@@ -6,13 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useConvexAuth } from 'convex/react'
-import { SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react'
+import { SignInButton, UserButton } from '@clerk/clerk-react'
 
 export const MenuBar = () => {
   const { isAuthenticated } = useConvexAuth()
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar 
+        position="fixed"
+        sx={{ backgroundColor: '#EA8A21'}}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -28,8 +31,9 @@ export const MenuBar = () => {
           </Typography>
           {isAuthenticated ? (
             <>  
-              <UserButton />
-              <SignOutButton />
+              <Box sx={{ mr: 1 }}>
+                <UserButton />
+              </Box>
             </>
           ) : (
             <SignInButton />
