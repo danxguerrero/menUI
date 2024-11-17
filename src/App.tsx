@@ -1,7 +1,12 @@
 import { Authenticated, Unauthenticated } from 'convex/react' 
 import { MenuBar } from './components/MenuBar.tsx'
-
+import { Button } from '@mui/material';
+import { useMutation } from "convex/react";
+import { api } from "../convex/_generated/api"; 
+import { useStoreUserEffect } from './useStoreUserEffect';
 function App() {
+  const createRestaurant = useMutation(api.functions.addRestaurant.createRestaurant);
+  const { isAuthenticated } = useStoreUserEffect();
   return (
     <main>
       <MenuBar />
@@ -9,7 +14,8 @@ function App() {
         <p>Please sign in to continue</p>
       </Unauthenticated>
       <Authenticated>
-        <p>Welcome to MenUI</p>
+        <p>Welcome to MenUI</p> 
+        <Button onClick={() => createRestaurant({ name: "Test Restaurant" })}>Log User Info</Button>
       </Authenticated>
     </main>
   )
