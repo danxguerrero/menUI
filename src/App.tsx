@@ -6,7 +6,7 @@ import { api } from "../convex/_generated/api";
 import { useStoreUserEffect } from './useStoreUserEffect';
 function App() {
   const createRestaurant = useMutation(api.functions.addRestaurant.createRestaurant);
-  const { isAuthenticated } = useStoreUserEffect();
+  useStoreUserEffect();
   return (
     <main>
       <MenuBar />
@@ -15,7 +15,7 @@ function App() {
       </Unauthenticated>
       <Authenticated>
         <p>Welcome to MenUI</p> 
-        <Button onClick={() => createRestaurant({ name: "Test Restaurant" })}>Log User Info</Button>
+        <Button onClick={() => createRestaurant({ name: "Test Restaurant" })}>Create Restaurant</Button>
       </Authenticated>
     </main>
   )

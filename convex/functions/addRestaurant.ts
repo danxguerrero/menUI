@@ -10,20 +10,13 @@ export const createRestaurant = mutation({
         throw new Error("Unauthenticated");
         }
         
-        // Get or create the user
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_token", (q) => 
-                q.eq("tokenIdentifier", identity.tokenIdentifier))
-            .first();
-            
-        if (!user) {
-            throw new Error("User not found");
+        if (!identity.email) {
+            throw new Error("User email not found");
         }
-
+        
         const newRestaurantId = await ctx.db.insert("restaurants", { 
             name: args.name,
-            owner: user._id
+            owner: identity.email
         });
         return newRestaurantId;
     },
