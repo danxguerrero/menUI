@@ -3,13 +3,14 @@ import { v } from "convex/values";
 export default defineSchema({
     users: defineTable({
         tokenIdentifier: v.string(),
-      }).index("by_token", ["tokenIdentifier"]),
+        email: v.optional(v.string()),
+      }).index("by_token", ["tokenIdentifier"]).index("by_email", ["email"]),
 
     // Table for restaurants
     restaurants: defineTable({
         name: v.string(), // Restaurant name
-        owner: v.id("users"), // Reference to the authenticated user (owner)
-    }),
+        owner: v.string(), // Owner's email address
+    }).index("by_owner", ["owner"]),
     
     // Table for menus
     menus: defineTable({
